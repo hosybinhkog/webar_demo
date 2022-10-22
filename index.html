@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/styles/app.css" />
+
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+    <script
+      type="module"
+      defer
+      crossorigin="use-credentials"
+      src="./main.js"
+    ></script>
+  </head>
+  <body style="overflow: hidden; padding: 0; margin: 0">
+    <main>
+      <div id="welcome-modal" class="modal message-modal" style="display: none">
+        <div class="overlay close"></div>
+        <div class="window">
+          <p>
+            Thông tin trò chơi:Get started with sample projects. These are
+            designed to help you with the fundamentals of 8th Wall development.
+          </p>
+          <button type="button" class="close btn primary btnar">
+            Tiếp tục
+          </button>
+        </div>
+      </div>
+      <a-scene
+        webxr="optionalFeatures: hit-test, dom-overlay"
+        vr-mode-ui="enabled: false"
+        arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;videoTexture: false;"
+        renderer="logarithmicDepthBuffer: true;"
+      >
+        <a-assets>
+          <a-asset-item id="tree" src="./assets/models/tree.glb"></a-asset-item>
+          <a-asset-item
+            id="box-model"
+            src="./assets/models/stone_chest/scene.gltf"
+          ></a-asset-item>
+        </a-assets>
+        <a-plane
+          id="target"
+          rotation="-90 0 0"
+          width="1000"
+          height="1000"
+          material="shader: shadow"
+          shadow
+        >
+        </a-plane>
+        <a-entity
+          depth="1"
+          height="1"
+          width="1"
+          open-gift
+          scale="2 2 2"
+          position="20 0 2"
+          gltf-model="#box-model"
+          animation="property: rotation; dur: 1000;
+                       to: 0 360 0;"
+          animation__positon="property: position; to: 20 -14 0; dur: 2000"
+        >
+        </a-entity>
+
+        <a-entity
+          depth="1"
+          height="1"
+          width="1"
+          scale="2 2 2"
+          position="-20 0 2"
+          animation-mixer="clip:OpenChest; loop:1000; timeScale: 1;"
+          animation="property: rotation; dur: 1000;
+                       to: 0 360 0;"
+          animation__positon="property: position; to: -20 -14 0; dur: 2000"
+          gltf-model="#box-model"
+        ></a-entity>
+        <a-entity
+          depth="1"
+          height="1"
+          width="1"
+          scale="2 2 2"
+          position="-4 0 2"
+          animation-mixer="clip:OpenChest; timeScale: 1;"
+          animation="property: rotation; dur: 1000;
+                       to: 0 360 0;"
+          animation__positon="property: position; to: -4 -14 0; dur: 2000"
+          gltf-model="#box-model"
+        ></a-entity>
+        <a-entity
+          depth="1"
+          height="1"
+          width="1"
+          scale="2 2 2"
+          position="8 0 2"
+          id="animationPlayer"
+          cursor="rayOrigin: mouse"
+          event-set__1="_event: mousedown; scale: 3 3 3"
+          animation="property: rotation; dur: 1000;
+                       to: 0 360 0;"
+          animation__positon="property: position; to: 8 -14 0; dur: 2000"
+          gltf-model="#box-model"
+        ></a-entity>
+
+        <a-entity position="0 10 100">
+          <a-camera> </a-camera>
+        </a-entity>
+      </a-scene>
+    </main>
+  </body>
+</html>
