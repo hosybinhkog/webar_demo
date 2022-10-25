@@ -18,6 +18,7 @@
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+
     <script
       type="module"
       defer
@@ -40,20 +41,25 @@
         </div>
       </div>
       <a-scene
-        webxr="optionalFeatures: hit-test, dom-overlay"
         vr-mode-ui="enabled: false"
-        arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;videoTexture: false;"
+        arjs=" sourceType: webcam;debugUIEnabled: false; videoTexture: true; "
         renderer="logarithmicDepthBuffer: true;"
+        cursor="rayOrigin: mouse; fuse: false"
+        raycaster="objects: [open-gift];"
       >
         <a-assets>
           <a-asset-item id="tree" src="./assets/models/tree.glb"></a-asset-item>
           <a-asset-item
-            id="box-model"
+            id="#box-model"
             src="./assets/models/stone_chest/scene.gltf"
           ></a-asset-item>
+          <a-asset-item
+            id="zoya"
+            src="./assets/models/zoya/scene.gltf"
+          ></a-asset-item>
+          <img src="./assets/images/img-sea.avif" id="sea" />
         </a-assets>
         <a-plane
-          id="target"
           rotation="-90 0 0"
           width="1000"
           height="1000"
@@ -68,10 +74,10 @@
           open-gift
           scale="2 2 2"
           position="20 0 2"
-          gltf-model="#box-model"
+          gltf-model="#zoya"
           animation="property: rotation; dur: 1000;
                        to: 0 360 0;"
-          animation__positon="property: position; to: 20 -14 0; dur: 2000"
+          animation__positon="property: position; to: 80 -14 0; dur: 2000"
         >
         </a-entity>
 
@@ -80,24 +86,24 @@
           height="1"
           width="1"
           scale="2 2 2"
+          open-gift
           position="-20 0 2"
-          animation-mixer="clip:OpenChest; loop:1000; timeScale: 1;"
           animation="property: rotation; dur: 1000;
                        to: 0 360 0;"
-          animation__positon="property: position; to: -20 -14 0; dur: 2000"
-          gltf-model="#box-model"
+          animation__positon="property: position; to: 40 -14 0; dur: 2000"
+          gltf-model="#zoya"
         ></a-entity>
         <a-entity
           depth="1"
           height="1"
           width="1"
           scale="2 2 2"
+          open-gift
           position="-4 0 2"
-          animation-mixer="clip:OpenChest; timeScale: 1;"
           animation="property: rotation; dur: 1000;
                        to: 0 360 0;"
-          animation__positon="property: position; to: -4 -14 0; dur: 2000"
-          gltf-model="#box-model"
+          animation__positon="property: position; to: 0 -14 0; dur: 2000"
+          gltf-model="#zoya"
         ></a-entity>
         <a-entity
           depth="1"
@@ -106,12 +112,24 @@
           scale="2 2 2"
           position="8 0 2"
           id="animationPlayer"
-          cursor="rayOrigin: mouse"
-          event-set__1="_event: mousedown; scale: 3 3 3"
+          open-gift
           animation="property: rotation; dur: 1000;
                        to: 0 360 0;"
-          animation__positon="property: position; to: 8 -14 0; dur: 2000"
-          gltf-model="#box-model"
+          animation__positon="property: position; to: -40 -14 0; dur: 2000"
+          gltf-model="#zoya"
+        ></a-entity>
+        <a-entity
+          depth="1"
+          height="1"
+          width="1"
+          scale="2 2 2"
+          position="8 0 2"
+          id="animationPlayer"
+          open-gift
+          animation="property: rotation; dur: 1000;
+                       to: 0 360 0;"
+          animation__positon="property: position; to: -80 -14 0; dur: 2000"
+          gltf-model="#zoya"
         ></a-entity>
 
         <a-entity position="0 10 100">

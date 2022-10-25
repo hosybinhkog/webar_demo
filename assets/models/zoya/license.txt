@@ -1,0 +1,11 @@
+Model Information:
+* title:	ZOYA
+* source:	https://sketchfab.com/3d-models/zoya-7930b40f0373448d948ee7c3bc333bf1
+* author:	scum_77 (https://sketchfab.com/scum_77)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "ZOYA" (https://sketchfab.com/3d-models/zoya-7930b40f0373448d948ee7c3bc333bf1) by scum_77 (https://sketchfab.com/scum_77) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

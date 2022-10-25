@@ -1,12 +1,9 @@
-// const elLoading = document.querySelector(".arjs-loader");
-
-// window.addEventListener("arjs-nft-loaded", (event) => {
-//   elLoading.style.display = "none";
-// });
 import Modal from "./libs/modal.js";
 
+// VARIABLE GLOBAL
 const btnAR = document.querySelector(".btnar");
-console.log(btnAR);
+const welcomeModel = document.getElementById("welcome-modal");
+const welcomeModal = new Modal(welcomeModel);
 
 AFRAME.registerComponent("modify-materials", {
   init: function () {
@@ -24,35 +21,45 @@ AFRAME.registerComponent("modify-materials", {
   },
 });
 
+const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
 AFRAME.registerComponent("open-gift", {
   schema: {},
   init: function () {
     const el = this.el;
-    el.addEventListener("touchstart", function () {
-      console.log("bbb");
+    el.addEventListener("touchstart", function (e) {
+      e.preventDefault();
+      console.log("touchstart");
 
       el.setAttribute("animation-mixer", "clip:OpenChest; timeScale: 1;");
     });
 
-    el.addEventListener("select", function () {
-      console.log("bbb");
+    el.addEventListener("select", function (e) {
+      e.preventDefault();
+      console.log("select");
+
       el.setAttribute("animation-mixer", "clip:OpenChest; timeScale: 1;");
     });
 
-    el.addEventListener("click", function () {
-      alert("bbb");
-      el.setAttribute("animation-mixer", "clip:OpenChest; timeScale: 1;");
+    el.addEventListener("click", async function (e) {
+      e.preventDefault();
+      await delay(5000);
+      await welcomeModal.open();
+
+      el.setAttribute("animation-mixer", "clip:Take 001; timeScale: 1;");
     });
 
-    el.addEventListener("mousedown", function () {
-      alert("bbb");
-      el.setAttribute("animation-mixer", "clip:OpenChest; timeScale: 1;");
+    el.addEventListener("mousedown", function (e) {
+      e.preventDefault();
+      el.setAttribute(
+        "animation-mixer",
+        "clip:OpenChest; timeScale: 1;loop:1000;"
+      );
     });
   },
 });
 
 async function load() {
-  const welcomeModal = new Modal(document.getElementById("welcome-modal"));
   await welcomeModal.open();
 
   const mycam = document.querySelector("a-camera");
@@ -60,7 +67,48 @@ async function load() {
   mycam.setAttribute("wasd-controls", "enabled", "false");
   mycam.setAttribute("look-controls", "mouseEnabled", "false");
   mycam.setAttribute("look-controls", "touchEnabled", "false");
-  mycam.setAttribute("look-controls", "true");
+  // mycam.setAttribute("look-controls", "true");
+
+  AFRAME.registerComponent("cursor-listener", {
+    init: function () {
+      const element = this.el;
+
+      this.el.addEventListener("mousedown", function (event) {
+        console.log("bbb");
+        element.setAttribute(
+          "animation-mixer",
+          "clip:OpenChest; timeScale: 1;"
+        );
+      });
+
+      this.el.addEventListener("touchstart", function (event) {
+        event.preventDefault();
+        console.log("bbb");
+        element.setAttribute(
+          "animation-mixer",
+          "clip:OpenChest; timeScale: 1;"
+        );
+      });
+
+      this.el.addEventListener("click", function (event) {
+        console.log("bbb");
+        element.setAttribute(
+          "animation-mixer",
+          "clip:OpenChest; timeScale: 1;"
+        );
+      });
+    },
+  });
 }
 
 load();
+
+AFRAME.registerComponent("raycaster-refresh", {
+  init: function () {
+    var sceneEl = this.el.sceneEl;
+    sceneEl.addEventListener("object3dset", function () {
+      var raycasterEl = sceneEl.querySelector("[raycaster]");
+      raycasterEl.components.raycaster.refreshObjects();
+    });
+  },
+});
