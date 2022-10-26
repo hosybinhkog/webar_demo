@@ -26,116 +26,156 @@
       src="./main.js"
     ></script>
   </head>
-  <body style="overflow: hidden; padding: 0; margin: 0">
+  <body
+    style="
+      overflow: hidden;
+      padding: 0;
+      margin: 0;
+      background-image: url(https://images.unsplash.com/photo-1608755728617-aefab37d2edd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
+      background-size: cover;
+    "
+  >
     <main>
       <div id="welcome-modal" class="modal message-modal" style="display: none">
         <div class="overlay close"></div>
         <div class="window">
           <p>
-            Thông tin trò chơi:Get started with sample projects. These are
-            designed to help you with the fundamentals of 8th Wall development.
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam
+            eos maxime explicabo non, possimus quas provident autem
+            exercitationem, consectetur unde iste esse incidunt! Perferendis
+            porro, aperiam aut autem debitis harum sed, natus maxime facilis
+            totam, quam eligendi. Recusandae soluta quis, asperiores non
+            reiciendis, consequatur exercitationem natus repellat at ducimus
+            corporis nostrum modi minus fuga. Minus vitae et vero quam numquam
+            debitis ut deleniti? Architecto inventore voluptas, fuga perferendis
+            autem in tempore molestiae voluptatibus rerum corrupti nostrum! Amet
+            quaerat doloribus sint tenetur, nostrum, aut eligendi necessitatibus
+            a minus sequi omnis repellendus neque consequuntur enim debitis
+            eaque exercitationem blanditiis dolorum earum doloremque.
           </p>
           <button type="button" class="close btn primary btnar">
-            Tiếp tục
+            Continue... Goodluck!!
           </button>
         </div>
       </div>
-      <a-scene
-        vr-mode-ui="enabled: false"
-        arjs=" sourceType: webcam;debugUIEnabled: false; videoTexture: true; "
-        renderer="logarithmicDepthBuffer: true;"
-        cursor="rayOrigin: mouse; fuse: false"
-        raycaster="objects: [open-gift];"
-      >
-        <a-assets>
-          <a-asset-item id="tree" src="./assets/models/tree.glb"></a-asset-item>
-          <a-asset-item
-            id="#box-model"
-            src="./assets/models/stone_chest/scene.gltf"
-          ></a-asset-item>
-          <a-asset-item
-            id="zoya"
-            src="./assets/models/zoya/scene.gltf"
-          ></a-asset-item>
-          <img src="./assets/images/img-sea.avif" id="sea" />
-        </a-assets>
-        <a-plane
-          rotation="-90 0 0"
-          width="1000"
-          height="1000"
-          material="shader: shadow"
-          shadow
+      <div id="AR">
+        <a-scene
+          vr-mode-ui="enabled: false"
+          arjs=" sourceType: webcam;debugUIEnabled: false; videoTexture: true; "
+          renderer="logarithmicDepthBuffer: true;"
+          cursor="rayOrigin: mouse; fuse: false"
+          raycaster="objects: [open-gift];"
         >
-        </a-plane>
-        <a-entity
-          depth="1"
-          height="1"
-          width="1"
-          open-gift
-          scale="2 2 2"
-          position="20 0 2"
-          gltf-model="#zoya"
-          animation="property: rotation; dur: 1000;
+          <a-assets>
+            <a-asset-item
+              id="tree"
+              src="./assets/models/tree.glb"
+            ></a-asset-item>
+            <a-asset-item
+              id="#box-model"
+              src="./assets/models/stone_chest/scene.gltf"
+            ></a-asset-item>
+            <a-asset-item
+              id="zoya"
+              src="./assets/models/zoya/scene.gltf"
+            ></a-asset-item>
+            <img src="./assets/images/img-sea.avif" id="sea" />
+          </a-assets>
+          <a-plane
+            rotation="-90 0 0"
+            width="1000"
+            height="1000"
+            material="shader: shadow"
+            shadow
+          >
+          </a-plane>
+          <a-entity
+            light="
+            type: directional;
+            intensity: 0.9;
+            castShadow: true;
+            shadowMapHeight:2048;
+            shadowMapWidth:2048;
+            shadowCameraTop: 20;
+            shadowCameraBottom: -20;
+            shadowCameraRight: 20;
+            shadowCameraLeft: -20;
+            target: #camera"
+            position="1 4.3 2.5"
+            shadow
+          >
+          </a-entity>
+          <a-light type="ambient" intensity="0.9"></a-light>
+          <a-entity
+            depth="1"
+            height="1"
+            width="1"
+            open-gift
+            scale="2 2 2"
+            position="20 0 2"
+            gltf-model="#zoya"
+            animation="property: rotation; dur: 1000;
                        to: 0 360 0;"
-          animation__positon="property: position; to: 80 -14 0; dur: 2000"
-        >
-        </a-entity>
+            animation__positon="property: position; to: 80 -14 0; dur: 2000"
+          >
+          </a-entity>
 
-        <a-entity
-          depth="1"
-          height="1"
-          width="1"
-          scale="2 2 2"
-          open-gift
-          position="-20 0 2"
-          animation="property: rotation; dur: 1000;
+          <a-entity
+            depth="1"
+            height="1"
+            width="1"
+            scale="2 2 2"
+            open-gift
+            position="-20 0 2"
+            animation="property: rotation; dur: 1000;
                        to: 0 360 0;"
-          animation__positon="property: position; to: 40 -14 0; dur: 2000"
-          gltf-model="#zoya"
-        ></a-entity>
-        <a-entity
-          depth="1"
-          height="1"
-          width="1"
-          scale="2 2 2"
-          open-gift
-          position="-4 0 2"
-          animation="property: rotation; dur: 1000;
+            animation__positon="property: position; to: 40 -14 0; dur: 2000"
+            gltf-model="#zoya"
+          ></a-entity>
+          <a-entity
+            depth="1"
+            height="1"
+            width="1"
+            scale="2 2 2"
+            open-gift
+            position="-4 0 2"
+            animation="property: rotation; dur: 1000;
                        to: 0 360 0;"
-          animation__positon="property: position; to: 0 -14 0; dur: 2000"
-          gltf-model="#zoya"
-        ></a-entity>
-        <a-entity
-          depth="1"
-          height="1"
-          width="1"
-          scale="2 2 2"
-          position="8 0 2"
-          id="animationPlayer"
-          open-gift
-          animation="property: rotation; dur: 1000;
+            animation__positon="property: position; to: 0 -14 0; dur: 2000"
+            gltf-model="#zoya"
+          ></a-entity>
+          <a-entity
+            depth="1"
+            height="1"
+            width="1"
+            scale="2 2 2"
+            position="8 0 2"
+            id="animationPlayer"
+            open-gift
+            animation="property: rotation; dur: 1000;
                        to: 0 360 0;"
-          animation__positon="property: position; to: -40 -14 0; dur: 2000"
-          gltf-model="#zoya"
-        ></a-entity>
-        <a-entity
-          depth="1"
-          height="1"
-          width="1"
-          scale="2 2 2"
-          position="8 0 2"
-          id="animationPlayer"
-          open-gift
-          animation="property: rotation; dur: 1000;
+            animation__positon="property: position; to: -40 -14 0; dur: 2000"
+            gltf-model="#zoya"
+          ></a-entity>
+          <a-entity
+            depth="1"
+            height="1"
+            width="1"
+            scale="2 2 2"
+            position="8 0 2"
+            id="animationPlayer"
+            open-gift
+            animation="property: rotation; dur: 1000;
                        to: 0 360 0;"
-          animation__positon="property: position; to: -80 -14 0; dur: 2000"
-          gltf-model="#zoya"
-        ></a-entity>
+            animation__positon="property: position; to: -80 -14 0; dur: 2000"
+            gltf-model="#zoya"
+          ></a-entity>
 
-        <a-entity position="0 10 100">
-          <a-camera> </a-camera>
-        </a-entity>
-      </a-scene>
+          <a-entity position="0 10 100">
+            <a-camera> </a-camera>
+          </a-entity>
+        </a-scene>
+      </div>
     </main>
   </body>
 </html>

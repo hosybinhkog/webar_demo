@@ -3,6 +3,7 @@ import Modal from "./libs/modal.js";
 // VARIABLE GLOBAL
 const btnAR = document.querySelector(".btnar");
 const welcomeModel = document.getElementById("welcome-modal");
+const ardiv = document.getElementById("AR");
 const welcomeModal = new Modal(welcomeModel);
 
 AFRAME.registerComponent("modify-materials", {
@@ -43,10 +44,18 @@ AFRAME.registerComponent("open-gift", {
 
     el.addEventListener("click", async function (e) {
       e.preventDefault();
-      await delay(5000);
+      if (el.getAttribute("isClicked")) {
+        alert("Model is clicked");
+        return;
+      }
+      el.setAttribute("animation-mixer", "clip:Take 001; timeScale: 1;");
+
+      await delay(2000);
       await welcomeModal.open();
 
-      el.setAttribute("animation-mixer", "clip:Take 001; timeScale: 1;");
+      await delay(2000);
+      el.setAttribute("animation-mixer", "clip: Static Pose");
+      el.setAttribute("isClicked", true);
     });
 
     el.addEventListener("mousedown", function (e) {
@@ -62,53 +71,28 @@ AFRAME.registerComponent("open-gift", {
 async function load() {
   await welcomeModal.open();
 
-  const mycam = document.querySelector("a-camera");
+  welcomeModel.addEventListener("click", function (e) {
+    console.log("Start AR");
+    console.log(ardiv);
 
-  mycam.setAttribute("wasd-controls", "enabled", "false");
-  mycam.setAttribute("look-controls", "mouseEnabled", "false");
-  mycam.setAttribute("look-controls", "touchEnabled", "false");
-  // mycam.setAttribute("look-controls", "true");
+    const mycam = document.querySelector("a-camera");
 
-  AFRAME.registerComponent("cursor-listener", {
-    init: function () {
-      const element = this.el;
+    mycam.setAttribute("wasd-controls", "enabled", "false");
+    mycam.setAttribute("look-controls", "mouseEnabled", "false");
+    mycam.setAttribute("look-controls", "touchEnabled", "false");
+    mycam.setAttribute("look-controls", "true");
 
-      this.el.addEventListener("mousedown", function (event) {
-        console.log("bbb");
-        element.setAttribute(
-          "animation-mixer",
-          "clip:OpenChest; timeScale: 1;"
-        );
-      });
+    // const arScene = document.createElement("a-scene");
+    // arScene.setAttribute("vr-mode-ui", "enabled", "false");
+    // arScene.setAttribute(
+    //   "arjs",
+    //   "sourceType: webcam;debugUIEnabled: false; videoTexture: true;"
+    // );
+    // arScene.setAttribute("renderer", "logarithmicDepthBuffer", "true");
+    // arScene.setAttribute("cursor", "rayOrigin: mouse; fuse: false");
 
-      this.el.addEventListener("touchstart", function (event) {
-        event.preventDefault();
-        console.log("bbb");
-        element.setAttribute(
-          "animation-mixer",
-          "clip:OpenChest; timeScale: 1;"
-        );
-      });
-
-      this.el.addEventListener("click", function (event) {
-        console.log("bbb");
-        element.setAttribute(
-          "animation-mixer",
-          "clip:OpenChest; timeScale: 1;"
-        );
-      });
-    },
+    // ardiv.appendChild(arScene);
   });
 }
 
 load();
-
-AFRAME.registerComponent("raycaster-refresh", {
-  init: function () {
-    var sceneEl = this.el.sceneEl;
-    sceneEl.addEventListener("object3dset", function () {
-      var raycasterEl = sceneEl.querySelector("[raycaster]");
-      raycasterEl.components.raycaster.refreshObjects();
-    });
-  },
-});
