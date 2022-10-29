@@ -10,14 +10,19 @@
       rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
     />
-    <title>Document</title>
+    <title>Demo web AR</title>
+    <link
+      rel="stylesheet"
+      href="./assets/styles/boxicons-2.0.7/css/boxicons.min.css"
+    />
     <link rel="stylesheet" href="./assets/styles/app.css" />
-
+    <link rel="stylesheet" href="./assets/styles/global.css" />
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/merge-images"></script>
 
     <script
       type="module"
@@ -36,32 +41,99 @@
     "
   >
     <main>
+      <!-- Model START -->
+
       <div id="welcome-modal" class="modal message-modal" style="display: none">
         <div class="overlay close"></div>
         <div class="window">
+          <div class="model-top">
+            <i class="bx bxs-chevron-left"></i>
+            <h5>Hộp quà bí ẩn (Treasure Box)</h5>
+            <i class="bx bxs-chevron-right"></i>
+          </div>
+          <div class="line">
+            <div></div>
+          </div>
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam
-            eos maxime explicabo non, possimus quas provident autem
-            exercitationem, consectetur unde iste esse incidunt! Perferendis
-            porro, aperiam aut autem debitis harum sed, natus maxime facilis
-            totam, quam eligendi. Recusandae soluta quis, asperiores non
-            reiciendis, consequatur exercitationem natus repellat at ducimus
-            corporis nostrum modi minus fuga. Minus vitae et vero quam numquam
-            debitis ut deleniti? Architecto inventore voluptas, fuga perferendis
-            autem in tempore molestiae voluptatibus rerum corrupti nostrum! Amet
-            quaerat doloribus sint tenetur, nostrum, aut eligendi necessitatibus
-            a minus sequi omnis repellendus neque consequuntur enim debitis
-            eaque exercitationem blanditiis dolorum earum doloremque.
+            Mini game AR quay số trúng thưởng mở hộp quà <br />
+            Vui lòng click một trong những hộp quà để mở, các giải thưởng có thể
+            đạt được bao gồm:
           </p>
+          <ul class="list-gift">
+            <li>
+              <i class="bx bx-check-circle"></i>
+              <p>Một phần quà trị giá 50.000</p>
+            </li>
+            <li>
+              <i class="bx bx-check-circle"></i>
+              <p>Một phần quà trị giá 50.000</p>
+            </li>
+            <li>
+              <i class="bx bx-check-circle"></i>
+              <p>Một phần quà trị giá 50.000</p>
+            </li>
+          </ul>
+          <a href="/" class="gift-link">Thể lệ</a>
           <button type="button" class="close btn primary btnar">
             Continue... Goodluck!!
           </button>
         </div>
       </div>
+      <div id="success-modal" class="modal message-modal" style="display: none">
+        <div class="overlay close"></div>
+        <div class="window">
+          <h1 class="header-bg">Chúc mừng bạn nhận được một phần quà</h1>
+          <div
+            style="
+              background-image: url(./assets/images/bg-black-gift-black-friday.jpg);
+              height: 60%;
+              background-size: cover;
+              background-repeat: no-repeat;
+              width: 100%;
+              border-radius: 10px;
+            "
+            class="container-success"
+          >
+            <div class="container-success-left">
+              <h4>Gift voucher trị giá:</h4>
+              <span>200.000 VND</span>
+              <p>Thời gian sử dụng đến 22/12/2023</p>
+            </div>
+          </div>
+          <div class="list-btn">
+            <button class="btn-custom btn-custom--yellow">
+              <i class="bx bxs-camera"></i>
+              <span>Chụp màn hình</span>
+            </button>
+            <button class="btn-custom btn-custom--white">
+              <i class="bx bx-share-alt"></i>
+              <span> Chia sẽ </span>
+            </button>
+          </div>
+
+          <button type="button" class="close btn primary btnar">Close</button>
+        </div>
+        <img class="egg-left" src="./assets/images/pngegg-left.png" alt="" />
+        <img class="egg-right" src="./assets/images/pngegg-right.png" alt="" />
+      </div>
+
+      <!-- FAILURE MODAL GIFT -->
+
+      <div id="failure-modal" class="modal message-modal" style="display: none">
+        <div class="overlay close"></div>
+        <div class="window">
+          <h1 class="header-bg">Chúc ban may mắn lần sau nhé</h1>
+          <img class="img-pngegg" src="./assets/images/pngegg.png" alt="" />
+          <button type="button" class="close btn primary btnar">Close</button>
+        </div>
+      </div>
+
+      <!-- SCENE  -->
+
       <div id="AR">
         <a-scene
           vr-mode-ui="enabled: false"
-          arjs=" sourceType: webcam;debugUIEnabled: false; videoTexture: true; "
+          arjs="sourceType: webcam;debugUIEnabled: false; videoTexture: true; "
           renderer="logarithmicDepthBuffer: true;"
           cursor="rayOrigin: mouse; fuse: false"
           raycaster="objects: [open-gift];"
@@ -79,8 +151,13 @@
               id="zoya"
               src="./assets/models/zoya/scene.gltf"
             ></a-asset-item>
+            <a-asset-item
+              id="giftbox-4"
+              src="./assets/models/gift_box_4.glb"
+            ></a-asset-item>
             <img src="./assets/images/img-sea.avif" id="sea" />
           </a-assets>
+
           <a-plane
             rotation="-90 0 0"
             width="1000"
@@ -105,12 +182,12 @@
             shadow
           >
           </a-entity>
-          <a-light type="ambient" intensity="0.9"></a-light>
+          <a-light type="ambient" intensity="1.0"></a-light>
           <a-entity
             depth="1"
             height="1"
             width="1"
-            open-gift
+            open-gift="gift: true"
             scale="2 2 2"
             position="20 0 2"
             gltf-model="#zoya"
@@ -129,7 +206,7 @@
             position="-20 0 2"
             animation="property: rotation; dur: 1000;
                        to: 0 360 0;"
-            animation__positon="property: position; to: 40 -14 0; dur: 2000"
+            animation__positon="property: position; to: 40 -14 -10; dur: 2000"
             gltf-model="#zoya"
           ></a-entity>
           <a-entity
@@ -141,7 +218,7 @@
             position="-4 0 2"
             animation="property: rotation; dur: 1000;
                        to: 0 360 0;"
-            animation__positon="property: position; to: 0 -14 0; dur: 2000"
+            animation__positon="property: position; to: 0 -14 -20; dur: 2000"
             gltf-model="#zoya"
           ></a-entity>
           <a-entity
@@ -154,7 +231,7 @@
             open-gift
             animation="property: rotation; dur: 1000;
                        to: 0 360 0;"
-            animation__positon="property: position; to: -40 -14 0; dur: 2000"
+            animation__positon="property: position; to: -40 -14 -10; dur: 2000"
             gltf-model="#zoya"
           ></a-entity>
           <a-entity

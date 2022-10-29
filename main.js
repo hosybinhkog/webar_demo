@@ -1,10 +1,15 @@
 import Modal from "./libs/modal.js";
 
+import { delay, blob2base64 } from "./libs/method.js";
+
 // VARIABLE GLOBAL
 const btnAR = document.querySelector(".btnar");
 const welcomeModel = document.getElementById("welcome-modal");
+const successModel = new Modal(document.getElementById("success-modal"));
+const failureModel = new Modal(document.getElementById("failure-modal"));
 const ardiv = document.getElementById("AR");
 const welcomeModal = new Modal(welcomeModel);
+const scene = document.querySelector("a-scene");
 
 AFRAME.registerComponent("modify-materials", {
   init: function () {
@@ -22,12 +27,13 @@ AFRAME.registerComponent("modify-materials", {
   },
 });
 
-const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-
 AFRAME.registerComponent("open-gift", {
-  schema: {},
+  schema: {
+    gift: { type: "boolean", default: "false" },
+  },
   init: function () {
     const el = this.el;
+    const gift = this.data.gift;
     el.addEventListener("touchstart", function (e) {
       e.preventDefault();
       console.log("touchstart");
@@ -51,8 +57,11 @@ AFRAME.registerComponent("open-gift", {
       el.setAttribute("animation-mixer", "clip:Take 001; timeScale: 1;");
 
       await delay(2000);
-      await welcomeModal.open();
-
+      if (gift) {
+        await successModel.open();
+      } else {
+        await failureModel.open();
+      }
       await delay(2000);
       el.setAttribute("animation-mixer", "clip: Static Pose");
       el.setAttribute("isClicked", true);
@@ -71,7 +80,7 @@ AFRAME.registerComponent("open-gift", {
 async function load() {
   await welcomeModal.open();
 
-  welcomeModel.addEventListener("click", function (e) {
+  welcomeModel.addEventListener("click", async function (e) {
     console.log("Start AR");
     console.log(ardiv);
 
@@ -96,3 +105,67 @@ async function load() {
 }
 
 load();
+
+// AFRAME.registerComponent("ar-hit-test", {
+//   init: function () {
+//     this.xrHitTestSource = null;
+//     this.viewerSpace = null;
+//     this.refSpace = null;
+
+//     this.el.sceneEl.renderer.xr.addEventListener("sessionend", (ev) => {
+//       this.viewerSpace = null;
+//       this.refSpace = null;
+//       this.xrHitTestSource = null;
+//     });
+//     this.el.sceneEl.renderer.xr.addEventListener("sessionstart", (ev) => {
+//       let session = this.el.sceneEl.renderer.xr.getSession();
+
+//       let element = this.el;
+//       session.addEventListener("select", function () {
+//         let position = element.getAttribute("position");
+
+//         document.getElementById("dino").setAttribute("position", position);
+//         document.getElementById("light").setAttribute("position", {
+//           x: position.x - 2,
+//           y: position.y + 4,
+//           z: position.z + 2,
+//         });
+//       });
+
+//       session.requestReferenceSpace("viewer").then((space) => {
+//         this.viewerSpace = space;
+//         session
+//           .requestHitTestSource({ space: this.viewerSpace })
+//           .then((hitTestSource) => {
+//             this.xrHitTestSource = hitTestSource;
+//           });
+//       });
+
+//       session.requestReferenceSpace("local-floor").then((space) => {
+//         this.refSpace = space;
+//       });
+//     });
+//   },
+//   tick: function () {
+//     if (this.el.sceneEl.is("ar-mode")) {
+//       if (!this.viewerSpace) return;
+
+//       let frame = this.el.sceneEl.frame;
+//       let xrViewerPose = frame.getViewerPose(this.refSpace);
+
+//       if (this.xrHitTestSource && xrViewerPose) {
+//         let hitTestResults = frame.getHitTestResults(this.xrHitTestSource);
+//         if (hitTestResults.length > 0) {
+//           let pose = hitTestResults[0].getPose(this.refSpace);
+
+//           let inputMat = new THREE.Matrix4();
+//           inputMat.fromArray(pose.transform.matrix);
+
+//           let position = new THREE.Vector3();
+//           position.setFromMatrixPosition(inputMat);
+//           this.el.setAttribute("position", position);
+//         }
+//       }
+//     }
+//   },
+// });
