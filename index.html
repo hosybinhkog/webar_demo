@@ -79,6 +79,9 @@
           </button>
         </div>
       </div>
+
+      <!-- SUCCESS MODAL -->
+
       <div id="success-modal" class="modal message-modal" style="display: none">
         <div class="overlay close"></div>
         <div class="window">
@@ -156,6 +159,14 @@
               src="./assets/models/gift_box_4.glb"
             ></a-asset-item>
             <img src="./assets/images/img-sea.avif" id="sea" />
+            <audio
+              src="./assets/audio/audioSuccess.mp3"
+              id="audioSuccess"
+            ></audio>
+            <audio
+              src="./assets/audio/audioFailure.mp3"
+              id="audioFailure"
+            ></audio>
           </a-assets>
 
           <a-plane
@@ -202,7 +213,7 @@
             height="1"
             width="1"
             scale="2 2 2"
-            open-gift
+            open-gift="gift: true"
             position="-20 0 2"
             animation="property: rotation; dur: 1000;
                        to: 0 360 0;"
@@ -247,7 +258,8 @@
             animation__positon="property: position; to: -80 -14 0; dur: 2000"
             gltf-model="#zoya"
           ></a-entity>
-
+          <a-sound volume="10" src="#audioSuccess" id="soundSuccess"></a-sound>
+          <a-sound volume="10" src="#audioFailure" id="soundFailure"></a-sound>
           <a-entity position="0 10 100">
             <a-camera> </a-camera>
           </a-entity>

@@ -11,6 +11,9 @@ const ardiv = document.getElementById("AR");
 const welcomeModal = new Modal(welcomeModel);
 const scene = document.querySelector("a-scene");
 
+const soundSuccess = document.querySelector("#soundSuccess");
+const audioFailure = document.querySelector("#soundFailure");
+
 AFRAME.registerComponent("modify-materials", {
   init: function () {
     // Wait for model to load.
@@ -34,20 +37,6 @@ AFRAME.registerComponent("open-gift", {
   init: function () {
     const el = this.el;
     const gift = this.data.gift;
-    el.addEventListener("touchstart", function (e) {
-      e.preventDefault();
-      console.log("touchstart");
-
-      el.setAttribute("animation-mixer", "clip:OpenChest; timeScale: 1;");
-    });
-
-    el.addEventListener("select", function (e) {
-      e.preventDefault();
-      console.log("select");
-
-      el.setAttribute("animation-mixer", "clip:OpenChest; timeScale: 1;");
-    });
-
     el.addEventListener("click", async function (e) {
       e.preventDefault();
       if (el.getAttribute("isClicked")) {
@@ -58,8 +47,10 @@ AFRAME.registerComponent("open-gift", {
 
       await delay(2000);
       if (gift) {
+        soundSuccess.components.sound.playSound();
         await successModel.open();
       } else {
+        audioFailure.components.sound.playSound();
         await failureModel.open();
       }
       await delay(2000);
@@ -105,6 +96,8 @@ async function load() {
 }
 
 load();
+
+// DETECT AR HIT TEST --> ONLY ANDROID
 
 // AFRAME.registerComponent("ar-hit-test", {
 //   init: function () {
