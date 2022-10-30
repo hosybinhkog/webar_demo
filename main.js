@@ -45,7 +45,7 @@ AFRAME.registerComponent("open-gift", {
       }
       el.setAttribute("animation-mixer", "clip:Take 001; timeScale: 1;");
 
-      await delay(2000);
+      await delay(1000);
       if (gift) {
         soundSuccess.components.sound.playSound();
         await successModel.open();
@@ -53,12 +53,19 @@ AFRAME.registerComponent("open-gift", {
         audioFailure.components.sound.playSound();
         await failureModel.open();
       }
-      await delay(2000);
+      await delay(500);
       el.setAttribute("animation-mixer", "clip: Static Pose");
       el.setAttribute("isClicked", true);
     });
 
     el.addEventListener("mousedown", function (e) {
+      e.preventDefault();
+      el.setAttribute(
+        "animation-mixer",
+        "clip:OpenChest; timeScale: 1;loop:1000;"
+      );
+    });
+    el.addEventListener("mousenter", function (e) {
       e.preventDefault();
       el.setAttribute(
         "animation-mixer",

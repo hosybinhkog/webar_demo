@@ -509,3 +509,42 @@ ul.debug-box > li.error {
   object-fit: cover;
   width: 300px;
 }
+
+@media only screen and (max-width: 600px) {
+  .modal > .window {
+    font-size: 12px;
+  }
+
+  .model-top {
+    font-size: 12px;
+  }
+
+  .header-bg {
+    font-size: 13px;
+  }
+
+  .btn,
+  .btn-custom {
+    font-size: 12px;
+  }
+
+  .btn-custom > span {
+    font-size: 12px;
+  }
+
+  .container-success-left {
+    font-size: 13px;
+  }
+
+  .container-success-left h4 {
+    font-size: 18px;
+  }
+
+  .container-success-left span {
+    font-size: 16px;
+  }
+
+  .list-gift > li {
+    font-size: 12px;
+  }
+}
