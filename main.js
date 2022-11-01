@@ -1,6 +1,6 @@
 import Modal from "./libs/modal.js";
 
-import { delay, blob2base64 } from "./libs/method.js";
+import { delay, takeSnapshot } from "./libs/method.js";
 
 // VARIABLE GLOBAL
 const btnAR = document.querySelector(".btnar");
@@ -10,9 +10,13 @@ const failureModel = new Modal(document.getElementById("failure-modal"));
 const ardiv = document.getElementById("AR");
 const welcomeModal = new Modal(welcomeModel);
 const scene = document.querySelector("a-scene");
+const btnScreenShort = document.querySelector(".btn-screenshort");
+const btnShareFacebook = document.querySelector(".btn-share");
 
 const soundSuccess = document.querySelector("#soundSuccess");
 const audioFailure = document.querySelector("#soundFailure");
+
+const url = window.location.href;
 
 AFRAME.registerComponent("modify-materials", {
   init: function () {
@@ -43,8 +47,10 @@ AFRAME.registerComponent("open-gift", {
         alert("Model is clicked");
         return;
       }
-      el.setAttribute("animation-mixer", "clip:Take 001; timeScale: 1;");
-
+      el.setAttribute(
+        "animation-mixer",
+        "clip:Take 001; timeScale: 1;loop: once; clampWhenFinished: true"
+      );
       await delay(1000);
       if (gift) {
         soundSuccess.components.sound.playSound();
@@ -53,8 +59,6 @@ AFRAME.registerComponent("open-gift", {
         audioFailure.components.sound.playSound();
         await failureModel.open();
       }
-      await delay(500);
-      el.setAttribute("animation-mixer", "clip: Static Pose");
       el.setAttribute("isClicked", true);
     });
 
@@ -89,83 +93,24 @@ async function load() {
     mycam.setAttribute("look-controls", "touchEnabled", "false");
     mycam.setAttribute("look-controls", "true");
 
-    // const arScene = document.createElement("a-scene");
-    // arScene.setAttribute("vr-mode-ui", "enabled", "false");
-    // arScene.setAttribute(
-    //   "arjs",
-    //   "sourceType: webcam;debugUIEnabled: false; videoTexture: true;"
-    // );
-    // arScene.setAttribute("renderer", "logarithmicDepthBuffer", "true");
-    // arScene.setAttribute("cursor", "rayOrigin: mouse; fuse: false");
+    btnScreenShort.addEventListener("click", function (e) {
+      e.preventDefault();
 
-    // ardiv.appendChild(arScene);
+      const video = document.querySelector("video");
+      const snap = takeSnapshot(video);
+
+      console.log(snap);
+    });
+
+    btnShareFacebook.addEventListener("click", function () {
+      window.open(
+        "https://www.facebook.com/sharer/sharer.php?u=" + url,
+        "facebook-share-dialog",
+        "width=800,height=600"
+      );
+      return false;
+    });
   });
 }
 
 load();
-
-// DETECT AR HIT TEST --> ONLY ANDROID
-
-// AFRAME.registerComponent("ar-hit-test", {
-//   init: function () {
-//     this.xrHitTestSource = null;
-//     this.viewerSpace = null;
-//     this.refSpace = null;
-
-//     this.el.sceneEl.renderer.xr.addEventListener("sessionend", (ev) => {
-//       this.viewerSpace = null;
-//       this.refSpace = null;
-//       this.xrHitTestSource = null;
-//     });
-//     this.el.sceneEl.renderer.xr.addEventListener("sessionstart", (ev) => {
-//       let session = this.el.sceneEl.renderer.xr.getSession();
-
-//       let element = this.el;
-//       session.addEventListener("select", function () {
-//         let position = element.getAttribute("position");
-
-//         document.getElementById("dino").setAttribute("position", position);
-//         document.getElementById("light").setAttribute("position", {
-//           x: position.x - 2,
-//           y: position.y + 4,
-//           z: position.z + 2,
-//         });
-//       });
-
-//       session.requestReferenceSpace("viewer").then((space) => {
-//         this.viewerSpace = space;
-//         session
-//           .requestHitTestSource({ space: this.viewerSpace })
-//           .then((hitTestSource) => {
-//             this.xrHitTestSource = hitTestSource;
-//           });
-//       });
-
-//       session.requestReferenceSpace("local-floor").then((space) => {
-//         this.refSpace = space;
-//       });
-//     });
-//   },
-//   tick: function () {
-//     if (this.el.sceneEl.is("ar-mode")) {
-//       if (!this.viewerSpace) return;
-
-//       let frame = this.el.sceneEl.frame;
-//       let xrViewerPose = frame.getViewerPose(this.refSpace);
-
-//       if (this.xrHitTestSource && xrViewerPose) {
-//         let hitTestResults = frame.getHitTestResults(this.xrHitTestSource);
-//         if (hitTestResults.length > 0) {
-//           let pose = hitTestResults[0].getPose(this.refSpace);
-
-//           let inputMat = new THREE.Matrix4();
-//           inputMat.fromArray(pose.transform.matrix);
-
-//           let position = new THREE.Vector3();
-//           position.setFromMatrixPosition(inputMat);
-//           this.el.setAttribute("position", position);
-//         }
-//       }
-//     }
-//   },
-// });

@@ -23,6 +23,10 @@
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
     <script src="https://unpkg.com/merge-images"></script>
+    <script src="./libs/html2canvas.js"></script>
+
+    <!-- LIBS SNAPSHOT ZAPPAR -->
+    <script src="https://libs.zappar.com/zappar-snapshot/0.0.18/zappar-snapshot.min.js"></script>
 
     <script
       type="module"
@@ -40,7 +44,7 @@
       background-size: cover;
     "
   >
-    <main>
+    <main id="capture">
       <!-- Model START -->
 
       <div id="welcome-modal" class="modal message-modal" style="display: none">
@@ -104,11 +108,11 @@
             </div>
           </div>
           <div class="list-btn">
-            <button class="btn-custom btn-custom--yellow">
+            <button class="btn-custom btn-custom--yellow btn-screenshort">
               <i class="bx bxs-camera"></i>
               <span>Chụp màn hình</span>
             </button>
-            <button class="btn-custom btn-custom--white">
+            <button class="btn-custom btn-custom--white btn-share">
               <i class="bx bx-share-alt"></i>
               <span> Chia sẽ </span>
             </button>
