@@ -405,6 +405,15 @@ ul.debug-box > li.error {
   font-weight: 500;
 }
 
+.model-top h5 {
+  font-size: 14px;
+  color: yellow;
+}
+
+.model-top i {
+  color: yellow;
+}
+
 .list-gift {
   list-style: none;
   display: flex;
@@ -537,11 +546,11 @@ ul.debug-box > li.error {
   }
 
   .container-success-left h4 {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .container-success-left span {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .list-gift > li {
