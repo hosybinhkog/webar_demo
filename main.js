@@ -49,7 +49,7 @@ AFRAME.registerComponent("open-gift", {
       }
       el.setAttribute(
         "animation-mixer",
-        "clip:Take 001; timeScale: 1;loop: once; clampWhenFinished: true"
+        "clip: *; timeScale: 1;loop: once; clampWhenFinished: true"
       );
       await delay(1000);
       if (gift) {
