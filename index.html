@@ -1,223 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+		/>
 
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="WebAR gift!!" />
-    <meta property="og:description" content="Try webAR with ONETECH!!!" />
-    <meta
-      property="og:image"
-      content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg"
-    />
-    <link
-      rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-    />
-    <title>Demo web AR</title>
-    <link
-      rel="stylesheet"
-      href="./assets/styles/boxicons-2.0.7/css/boxicons.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
-    <link rel="stylesheet" href="./assets/styles/app.css" />
-    <link rel="stylesheet" href="./assets/styles/global.css" />
-    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-    <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
-    <script src="https://unpkg.com/merge-images"></script>
-    <!-- LIBS SNAPSHOT ZAPPAR -->
-    <script src="https://libs.zappar.com/zappar-snapshot/0.0.18/zappar-snapshot.min.js"></script>
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="WebAR gift!!" />
+		<meta property="og:description" content="Try webAR with ONETECH!!!" />
+		<meta
+			property="og:image"
+			content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg"
+		/>
+		<link
+			rel="stylesheet"
+			href="//cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+		/>
+		<title>Demo web AR</title>
+		<link
+			rel="stylesheet"
+			href="./assets/styles/boxicons-2.0.7/css/boxicons.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+		/>
+		<link rel="stylesheet" href="./assets/styles/app.css" />
+		<link rel="stylesheet" href="./assets/styles/global.css" />
+		<script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+		<script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+		<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+		<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+		<script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+		<!-- LIBS SNAPSHOT ZAPPAR -->
+		<script src="https://libs.zappar.com/zappar-snapshot/0.0.18/zappar-snapshot.min.js"></script>
 
-    <script
-      type="module"
-      defer
-      crossorigin="use-credentials"
-      src="./main.js"
-    ></script>
-  </head>
-  <body
-    style="
-      overflow: hidden;
-      padding: 0;
-      margin: 0;
-      background-image: url(https://images.unsplash.com/photo-1608755728617-aefab37d2edd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
-      background-size: cover;
-    "
-  >
-    <main id="capture">
-      <!-- Model START -->
+		<script
+			type="module"
+			defer
+			crossorigin="use-credentials"
+			src="./main.js"
+		></script>
+	</head>
+	<body
+		style="
+			overflow: hidden;
+			padding: 0;
+			margin: 0;
+			background-image: url(https://images.unsplash.com/photo-1608755728617-aefab37d2edd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
+			background-size: cover;
+		"
+	>
+		<main id="capture">
+			<!-- Model START -->
 
-      <div id="welcome-modal" class="modal message-modal" style="display: none">
-        <div class="overlay close"></div>
-        <div class="window">
-          <div class="model-top">
-            <i class="bx bxs-chevron-left"></i>
-            <h5 class="animate__animated animate__bounce animate__delay-1s">
-              Hộp quà bí ẩn (Treasure Box)
-            </h5>
-            <i class="bx bxs-chevron-right"></i>
-          </div>
-          <div class="line">
-            <div></div>
-          </div>
-          <p>
-            Mini game AR quay số trúng thưởng mở hộp quà <br />
-            Vui lòng click một trong những hộp quà để mở, các giải thưởng có thể
-            đạt được bao gồm:
-          </p>
-          <ul class="list-gift">
-            <li>
-              <i class="bx bx-check-circle"></i>
-              <p>Một phần quà trị giá 50.000</p>
-            </li>
-            <li>
-              <i class="bx bx-check-circle"></i>
-              <p>Một phần quà trị giá 50.000</p>
-            </li>
-            <li>
-              <i class="bx bx-check-circle"></i>
-              <p>Một phần quà trị giá 50.000</p>
-            </li>
-          </ul>
-          <a href="/" class="gift-link">Thể lệ</a>
-          <button type="button" class="close btn primary btnar">
-            Continue... Goodluck!!
-          </button>
-        </div>
-      </div>
+			<div id="welcome-modal" class="modal message-modal" style="display: none">
+				<div class="overlay close"></div>
+				<div class="window">
+					<div class="model-top">
+						<i class="bx bxs-chevron-left"></i>
+						<h5 class="animate__animated animate__bounce animate__delay-1s">
+							Hộp quà bí ẩn (Treasure Box)
+						</h5>
+						<i class="bx bxs-chevron-right"></i>
+					</div>
+					<div class="line">
+						<div></div>
+					</div>
+					<p>
+						Mini game AR quay số trúng thưởng mở hộp quà <br />
+						Vui lòng click một trong những hộp quà để mở, các giải thưởng có thể
+						đạt được bao gồm:
+					</p>
+					<ul class="list-gift">
+						<li>
+							<i class="bx bx-check-circle"></i>
+							<p>Một phần quà trị giá 50.000</p>
+						</li>
+						<li>
+							<i class="bx bx-check-circle"></i>
+							<p>Một phần quà trị giá 50.000</p>
+						</li>
+						<li>
+							<i class="bx bx-check-circle"></i>
+							<p>Một phần quà trị giá 50.000</p>
+						</li>
+					</ul>
+					<a href="/" class="gift-link">Thể lệ</a>
+					<button type="button" class="close btn primary btnar">
+						Continue... Goodluck!!
+					</button>
+				</div>
+			</div>
 
-      <!-- SUCCESS MODAL -->
+			<!-- SUCCESS MODAL -->
 
-      <div
-        id="success-modal"
-        class="modal message-modal animate__tada animate__animated animate__fast"
-        style="display: none"
-      >
-        <div class="overlay close"></div>
-        <div class="window">
-          <h1 class="header-bg">Chúc mừng bạn nhận được một phần quà</h1>
-          <div
-            style="
-              background-image: url(./assets/images/bg-black-gift-black-friday.jpg);
-              height: 50%;
-              background-size: cover;
-              background-position: center;
-              background-repeat: no-repeat;
-              width: 100%;
-              border-radius: 10px;
-            "
-            class="container-success"
-          >
-            <div class="container-success-left">
-              <h4>Gift voucher trị giá:</h4>
-              <span>200.000 VND</span>
-              <p>Thời gian sử dụng đến 22/12/2023</p>
-            </div>
-          </div>
-          <div class="list-btn">
-            <button class="btn-custom btn-custom--yellow btn-screenshort">
-              <i class="bx bxs-camera"></i>
-              <span>Chụp màn hình</span>
-            </button>
-            <button class="btn-custom btn-custom--white btn-share">
-              <i class="bx bx-share-alt"></i>
-              <span> Chia sẽ </span>
-            </button>
-          </div>
+			<div
+				id="success-modal"
+				class="modal message-modal animate__tada animate__animated animate__fast"
+				style="display: none"
+			>
+				<div class="overlay close"></div>
+				<div class="window">
+					<h1 class="header-bg">Chúc mừng bạn nhận được một phần quà</h1>
+					<div
+						style="
+							background-image: url(./assets/images/bg-black-gift-black-friday.jpg);
+							height: 50%;
+							background-size: cover;
+							background-position: center;
+							background-repeat: no-repeat;
+							width: 100%;
+							border-radius: 10px;
+						"
+						class="container-success"
+					>
+						<div class="container-success-left">
+							<h4>Gift voucher trị giá:</h4>
+							<span>200.000 VND</span>
+							<p>Thời gian sử dụng đến 22/12/2023</p>
+						</div>
+					</div>
+					<div class="list-btn">
+						<button class="btn-custom btn-custom--yellow btn-screenshort">
+							<i class="bx bxs-camera"></i>
+							<span>Chụp màn hình</span>
+						</button>
+						<button class="btn-custom btn-custom--white btn-share">
+							<i class="bx bx-share-alt"></i>
+							<span> Chia sẽ </span>
+						</button>
+					</div>
 
-          <button type="button" class="close btn primary btnar">Close</button>
-        </div>
-        <img
-          class="egg-left animate__animated animate__bounce animate__infinite animate__tada"
-          src="./assets/images/pngegg-left.png"
-          alt=""
-        />
-        <img
-          class="egg-right animate__animated animate__bounce animate__infinite animate__tada"
-          src="./assets/images/pngegg-right.png"
-          alt=""
-        />
-      </div>
+					<button type="button" class="close btn primary btnar">Close</button>
+				</div>
+				<img
+					class="egg-left animate__animated animate__bounce animate__infinite animate__tada"
+					src="./assets/images/pngegg-left.png"
+					alt=""
+				/>
+				<img
+					class="egg-right animate__animated animate__bounce animate__infinite animate__tada"
+					src="./assets/images/pngegg-right.png"
+					alt=""
+				/>
+			</div>
 
-      <!-- FAILURE MODAL GIFT -->
+			<!-- FAILURE MODAL GIFT -->
 
-      <div
-        id="failure-modal"
-        class="modal message-modal animate__tada animate__animated animate__fast"
-        style="display: none"
-      >
-        <div class="overlay close"></div>
-        <div class="window">
-          <h1 class="header-bg">Chúc ban may mắn lần sau nhé</h1>
-          <img
-            class="img-pngegg animate__animated animate__bounce animate__infinite"
-            src="./assets/images/pngegg.png"
-            alt=""
-          />
-          <div class="center-div">
-            <button type="button" class="close btn primary btnar">Close</button>
-          </div>
-        </div>
-      </div>
+			<div
+				id="failure-modal"
+				class="modal message-modal animate__tada animate__animated animate__fast"
+				style="display: none"
+			>
+				<div class="overlay close"></div>
+				<div class="window">
+					<h1 class="header-bg">Chúc ban may mắn lần sau nhé</h1>
+					<img
+						class="img-pngegg animate__animated animate__bounce animate__infinite"
+						src="./assets/images/pngegg.png"
+						alt=""
+					/>
+					<div class="center-div">
+						<button type="button" class="close btn primary btnar">Close</button>
+					</div>
+				</div>
+			</div>
 
-      <!-- SCENE  -->
+			<!-- SCENE  -->
 
-      <div id="AR">
-        <a-scene
-          vr-mode-ui="enabled: false"
-          arjs="sourceType: webcam;debugUIEnabled: false; videoTexture: true; "
-          renderer="logarithmicDepthBuffer: true;"
-          cursor="rayOrigin: mouse; fuse: false"
-          raycaster="objects: [open-gift];"
-        >
-          <a-assets>
-            <a-asset-item
-              id="tree"
-              src="./assets/models/tree.glb"
-            ></a-asset-item>
-            <a-asset-item
-              id="#box-model"
-              src="./assets/models/stone_chest/scene.gltf"
-            ></a-asset-item>
-            <a-asset-item
-              id="zoya"
-              src="./assets/models/zoya/scene.gltf"
-            ></a-asset-item>
-            <a-asset-item
-              id="giftbox-4"
-              src="./assets/models/gift_box_4.glb"
-            ></a-asset-item>
-            <img src="./assets/images/img-sea.avif" id="sea" />
-            <audio
-              src="./assets/audio/audioSuccess.mp3"
-              id="audioSuccess"
-            ></audio>
-            <audio
-              src="./assets/audio/audioFailure.mp3"
-              id="audioFailure"
-            ></audio>
-          </a-assets>
+			<div id="AR">
+				<a-scene
+					vr-mode-ui="enabled: false"
+					arjs="sourceType: webcam;debugUIEnabled: false; videoTexture: true; "
+					renderer="logarithmicDepthBuffer: true;"
+					cursor="rayOrigin: mouse; fuse: false"
+					raycaster="objects: [open-gift];"
+				>
+					<a-assets>
+						<a-asset-item
+							id="tree"
+							src="./assets/models/tree.glb"
+						></a-asset-item>
+						<a-asset-item
+							id="#box-model"
+							src="./assets/models/stone_chest/scene.gltf"
+						></a-asset-item>
+						<a-asset-item
+							id="zoya"
+							src="./assets/models/zoya/scene.gltf"
+						></a-asset-item>
+						<a-asset-item
+							id="giftbox-4"
+							src="./assets/models/gift_box_4.glb"
+						></a-asset-item>
+						<img src="./assets/images/img-sea.avif" id="sea" />
+						<audio
+							src="./assets/audio/audioSuccess.mp3"
+							id="audioSuccess"
+						></audio>
+						<audio
+							src="./assets/audio/audioFailure.mp3"
+							id="audioFailure"
+						></audio>
+					</a-assets>
 
-          <a-plane
-            rotation="-90 0 0"
-            width="1000"
-            height="1000"
-            material="shader: shadow"
-            shadow
-          >
-          </a-plane>
-          <a-entity
-            light="
+					<a-plane
+						rotation="-90 0 0"
+						width="1000"
+						height="1000"
+						material="shader: shadow"
+						shadow
+					>
+					</a-plane>
+					<a-entity
+						light="
             type: directional;
             intensity: 0.9;
             castShadow: true;
@@ -228,82 +227,108 @@
             shadowCameraRight: 20;
             shadowCameraLeft: -20;
             target: #camera"
-            position="1 4.3 2.5"
-            shadow
-          >
-          </a-entity>
-          <a-light type="ambient" intensity="1.0"></a-light>
-          <a-entity
-            depth="1"
-            height="1"
-            width="1"
-            open-gift="gift: true"
-            scale="1 1 1"
-            position="20 0 2"
-            gltf-model="#zoya"
-            animation="property: rotation; dur: 1000;
+						position="1 4.3 2.5"
+						shadow
+					>
+					</a-entity>
+					<a-light type="ambient" intensity="1.0"></a-light>
+					<a-entity
+						depth="1"
+						height="1"
+						width="1"
+						open-gift="gift: true"
+						scale="1 1 1"
+						position="20 0 2"
+						gltf-model="#zoya"
+						animation="property: rotation; dur: 1000;
                        to: 0 360 0;"
-            animation__positon="property: position; to: 30 -14 0; dur: 2000"
-          >
-          </a-entity>
+						animation__positon="property: position; to: 30 -14 0; dur: 2000"
+					>
+					</a-entity>
 
-          <a-entity
-            depth="1"
-            height="1"
-            width="1"
-            scale="1 1 1"
-            open-gift="gift: true"
-            position="-20 0 2"
-            animation="property: rotation; dur: 1000;
+					<a-entity
+						depth="1"
+						height="1"
+						width="1"
+						scale="1 1 1"
+						open-gift="gift: true"
+						position="-20 0 2"
+						animation="property: rotation; dur: 1000;
                        to: 0 360 0;"
-            animation__positon="property: position; to: 15 -14 -10; dur: 2000"
-            gltf-model="#zoya"
-          ></a-entity>
-          <a-entity
-            depth="1"
-            height="1"
-            width="1"
-            scale="1 1 1"
-            open-gift
-            position="-4 0 2"
-            animation="property: rotation; dur: 1000;
+						animation__positon="property: position; to: 15 -14 -10; dur: 2000"
+						gltf-model="#zoya"
+					></a-entity>
+					<a-entity
+						depth="1"
+						height="1"
+						width="1"
+						scale="1 1 1"
+						open-gift
+						position="-4 0 2"
+						animation="property: rotation; dur: 1000;
                        to: 0 360 0;"
-            animation__positon="property: position; to: 0 -14 -20; dur: 2000"
-            gltf-model="#zoya"
-          ></a-entity>
-          <a-entity
-            depth="1"
-            height="1"
-            width="1"
-            scale="1 1 1"
-            position="8 0 2"
-            id="animationPlayer"
-            open-gift
-            animation="property: rotation; dur: 1000;
+						animation__positon="property: position; to: 0 -14 -20; dur: 2000"
+						gltf-model="#zoya"
+					></a-entity>
+					<a-entity
+						depth="1"
+						height="1"
+						width="1"
+						scale="1 1 1"
+						position="8 0 2"
+						id="animationPlayer"
+						open-gift
+						animation="property: rotation; dur: 1000;
                        to: 0 360 0;"
-            animation__positon="property: position; to: -15 -14 -10; dur: 2000"
-            gltf-model="#zoya"
-          ></a-entity>
-          <a-entity
-            depth="1"
-            height="1"
-            width="1"
-            scale="1 1 1"
-            position="8 0 2"
-            id="animationPlayer"
-            open-gift
-            animation="property: rotation; dur: 1000;
+						animation__positon="property: position; to: -15 -14 -10; dur: 2000"
+						gltf-model="#zoya"
+					></a-entity>
+					<a-entity
+						depth="1"
+						height="1"
+						width="1"
+						scale="1 1 1"
+						position="8 0 2"
+						id="animationPlayer"
+						open-gift
+						animation="property: rotation; dur: 1000;
                        to: 0 360 0;"
-            animation__positon="property: position; to: -30 -14 0; dur: 2000"
-            gltf-model="#zoya"
-          ></a-entity>
-          <a-sound volume="10" src="#audioSuccess" id="soundSuccess"></a-sound>
-          <a-sound volume="10" src="#audioFailure" id="soundFailure"></a-sound>
-          <a-entity position="0 10 100">
-            <a-camera> </a-camera>
-          </a-entity>
-        </a-scene>
-      </div>
-    </main>
-  </body>
+						animation__positon="property: position; to: -30 -14 0; dur: 2000"
+						gltf-model="#zoya"
+					></a-entity>
+					<a-sound volume="10" src="#audioSuccess" id="soundSuccess"></a-sound>
+					<a-sound volume="10" src="#audioFailure" id="soundFailure"></a-sound>
+					<a-entity position="0 10 100">
+						<a-camera> </a-camera>
+					</a-entity>
+				</a-scene>
+			</div>
+			<div class="takescreentshot">
+				<img id="snap" />
+				<div class="takescreentshot-container">
+					<a
+						download="Ar images"
+						title="save images..."
+						target="_blank"
+						class="btn btn-screenshort btn-download-image"
+					>
+						<i class="bx bxs-cloud-download"></i>
+						<span>Download</span>
+					</a>
+					<div class="btn btn-screenshort btn-share-image">
+						<i class="bx bxs-share"></i>
+						<span>Share FB</span>
+					</div>
+					<a
+						target="_blank"
+						href="https://onetech.vn/"
+						class="btn btn-screenshort btn-exit"
+					>
+						<i class="bx bx-exit"></i>
+						<span>Exit</span>
+					</a>
+				</div>
+			</div>
+		</main>
+	</body>
 </html>

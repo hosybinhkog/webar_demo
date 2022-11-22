@@ -523,7 +523,7 @@ ul.debug-box > li.error {
   width: 300px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 767px) {
   .modal > .window {
     font-size: 12px;
   }
@@ -571,5 +571,44 @@ ul.debug-box > li.error {
 .center-div {
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+#snap {
+  max-width: 80%;
+  height: auto;
+  display: block;
+  visibility: hidden;
+  border: 2px white solid;
+  border-radius: 10px;
+  z-index: 10;
+  object-fit: contain;
+}
+
+#snap.visible {
+  visibility: visible;
+}
+
+.takescreentshot-container.visible {
+  visibility: visible;
+}
+
+.takescreentshot {
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column;
+  height: 100vh;
+  border: 2px white solid;
+}
+
+.takescreentshot-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+  visibility: hidden;
   justify-content: center;
 }

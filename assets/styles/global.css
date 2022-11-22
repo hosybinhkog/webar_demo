@@ -26,3 +26,20 @@
 .btn > i {
   font-size: 1rem;
 }
+
+.btn.btn-screenshort {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 100px;
+  align-content: center;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  transition: all 0.25s ease-in-out;
+}
+
+.btn-screenshort:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
