@@ -18,7 +18,7 @@ const containerBtnScreenShort = document.querySelector(
 )
 const btnDownloadImage = document.querySelector('.btn-download-image')
 const btnShareImage = document.querySelector('.btn-share-image')
-const btnExit = document.querySelector('.btn-exit')
+const btnExit = document.querySelectorAll('.btn-exit')
 
 const soundSuccess = document.querySelector('#soundSuccess')
 const audioFailure = document.querySelector('#soundFailure')
@@ -132,8 +132,10 @@ async function load() {
 			return false
 		})
 
-		btnExit.addEventListener('click', function () {
-			window.close()
+		btnExit.forEach((e) => {
+			e.addEventListener('click', function () {
+				window.location.replace('https://onetech.vn/')
+			})
 		})
 	})
 }

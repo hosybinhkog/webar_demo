@@ -1,45 +1,49 @@
 .btn-custom {
-  border: none;
-  outline: none;
-  padding: 10px 12px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  line-height: 1.4;
-  justify-content: center;
-  font-size: 1.2rem;
-  font-weight: 700;
-  background-color: yellow;
-  color: #000;
-  cursor: pointer;
-  gap: 5px;
+	border: none;
+	outline: none;
+	padding: 10px 12px;
+	border-radius: 6px;
+	display: flex;
+	align-items: center;
+	line-height: 1.4;
+	justify-content: center;
+	font-size: 1.2rem;
+	font-weight: 700;
+	background-color: yellow;
+	color: #000;
+	cursor: pointer;
+	gap: 5px;
 }
 
 .btn-custom--white {
-  background: #ffff;
+	background: #ffff;
 }
 
 .btn-custom > i {
-  font-size: 1.4em;
+	font-size: 1.4em;
 }
 
 .btn > i {
-  font-size: 1rem;
+	font-size: 1rem;
 }
 
 .btn.btn-screenshort {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  min-width: 100px;
-  align-content: center;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: bold;
-  transition: all 0.25s ease-in-out;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	min-width: 100px;
+	align-content: center;
+	cursor: pointer;
+	font-size: 12px;
+	font-weight: bold;
+	transition: all 0.25s ease-in-out;
 }
 
 .btn-screenshort:hover {
-  opacity: 0.9;
-  transform: scale(1.02);
+	opacity: 0.9;
+	transform: scale(1.02);
+}
+
+a {
+	text-decoration: none;
 }
