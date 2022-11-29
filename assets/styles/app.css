@@ -507,7 +507,14 @@ ul.debug-box > li.error {
 	width: 30%;
 	z-index: 100;
 	transition: all 2s ease-in;
-	transform: rotateX(45deg);
+	animation: hideGiftRight 2s;
+}
+
+.egg-right > img {
+	display: block;
+	position: absolute;
+	transition: all 2s ease-in;
+	max-width: 100%;
 }
 
 .egg-left {
@@ -532,6 +539,11 @@ ul.debug-box > li.error {
 	width: 300px;
 }
 
+.image-firework-box-1 {
+	position: absolute;
+	transform: translate(100%, 150%);
+}
+
 @media only screen and (max-width: 767px) {
 	.modal > .window {
 		font-size: 12px;
@@ -544,12 +556,26 @@ ul.debug-box > li.error {
 		max-width: 150%;
 	}
 
+	.egg-right > img {
+		display: block;
+		top: 70px;
+		right: 30px;
+		position: absolute;
+		transition: all 2s ease-in;
+		max-width: 60%;
+	}
+
 	.model-top {
 		font-size: 12px;
 	}
 
 	.header-bg {
 		font-size: 12px;
+	}
+
+	.image-firework-box-4 {
+		bottom: 30px;
+		left: 20px;
 	}
 
 	.btn,
@@ -581,6 +607,18 @@ ul.debug-box > li.error {
 		margin-top: 10px;
 		object-fit: cover;
 		width: 200px;
+	}
+
+	.image-firework-box-1 {
+		position: absolute;
+		transform: translate(35%, 80%);
+	}
+
+	.image-firework-box-2,
+	.image-firework-box-3 {
+		position: absolute;
+		top: 20px;
+		left: 10px;
 	}
 }
 
@@ -633,6 +671,17 @@ ul.debug-box > li.error {
 	0% {
 		opacity: 0;
 		transform: translate(-200px, 200px);
+	}
+	100% {
+		opacity: 1;
+		transform: translate(0, 0);
+	}
+}
+
+@keyframes hideGiftRight {
+	0% {
+		opacity: 0;
+		transform: translate(200px, 200px);
 	}
 	100% {
 		opacity: 1;
