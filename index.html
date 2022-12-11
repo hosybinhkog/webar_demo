@@ -155,18 +155,24 @@
 					src="./assets/images/pngegg-right.png"
 					alt="animate__fadeInBottomLeft animate__delay-1s animate__animated"
 				/> -->
-				<div class="container-egg-left egg-left">
-					<img
-						style="z-index: 100"
-						src="./assets/images/Firework_box_left_01.png"
-						alt=""
-					/>
+				<div
+					style="transform: translate(0, 0)"
+					class="container-egg-left egg-left"
+				>
 					<img
 						style="z-index: 100"
 						class="animate__fadeInBottomLeft animate__animated"
 						src="./assets/images/Firework_box_left_02.png"
 						alt=""
 					/>
+				</div>
+				<div class="container-egg-left egg-left">
+					<img
+						style="z-index: 100"
+						src="./assets/images/Firework_box_left_01.png"
+						alt=""
+					/>
+
 					<img
 						style="z-index: 100"
 						class="animate__fadeOut animate__animated animate__infinite animate__faster animate__heartBeat"
@@ -268,6 +274,10 @@
 						<button type="button" class="close btn primary btnar">Close</button>
 					</a>
 				</div>
+			</div>
+
+			<div class="capture-image hidden">
+				<i class="bx bxs-camera"></i>
 			</div>
 
 			<!-- SCENE  -->
@@ -405,6 +415,7 @@
 				</a-scene>
 			</div>
 			<div class="takescreentshot">
+				<i class="bx bx-x close-takescreentshot"></i>
 				<img id="snap" />
 				<div class="takescreentshot-container">
 					<a

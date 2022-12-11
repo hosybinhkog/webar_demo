@@ -442,6 +442,7 @@ ul.debug-box > li.error {
 	width: 90%;
 	color: aqua;
 	text-align: right;
+	text-decoration: underline;
 	padding-right: 2rem;
 }
 
@@ -666,6 +667,10 @@ ul.debug-box > li.error {
 	visibility: hidden;
 	justify-content: center;
 }
+
+/* .close-takescreentshot {
+	position: absolute;
+} */
 
 @keyframes hideGift {
 	0% {

@@ -16,6 +16,7 @@ const imageShowScreenShort = document.querySelector('#snap')
 const containerBtnScreenShort = document.querySelector(
 	'.takescreentshot-container'
 )
+const captureImageEl = document.querySelector('.capture-image')
 const btnDownloadImage = document.querySelector('.btn-download-image')
 const btnShareImage = document.querySelector('.btn-share-image')
 const btnExit = document.querySelectorAll('.btn-exit')
@@ -98,13 +99,18 @@ async function load() {
 		mycam.setAttribute('look-controls', 'touchEnabled', 'false')
 		mycam.setAttribute('look-controls', 'true')
 
-		btnScreenShort.addEventListener('click', function (e) {
+		btnScreenShort.addEventListener('click', () => {
+			captureImageEl.classList.remove('hidden')
+			successModel.close()
+		})
+
+		captureImageEl.addEventListener('click', function (e) {
 			e.preventDefault()
 
 			const video = document.querySelector('video')
 			const snap = takeSnapshot(video)
 
-			successModel.close()
+			// successModel.close()
 			imageShowScreenShort.setAttribute('src', snap)
 			imageShowScreenShort.classList.add('visible')
 			containerBtnScreenShort.classList.add('visible')
