@@ -64,6 +64,12 @@ a {
 	align-items: center;
 	visibility: visible;
 	justify-content: center;
+	transition: all 0.2s ease-in-out;
+}
+
+.capture-image:hover {
+	opacity: 0.8;
+	transform: scale(1.1);
 }
 
 .capture-image > i {

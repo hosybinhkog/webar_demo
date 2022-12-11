@@ -330,7 +330,7 @@ ul.debug-box > li.error {
 	transition: all linear;
 	bottom: 0;
 	margin: auto;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.1);
 	color: #fff;
 	/* overflow-x: scroll; */
 	border-radius: 10px;
@@ -668,9 +668,13 @@ ul.debug-box > li.error {
 	justify-content: center;
 }
 
-/* .close-takescreentshot {
+.close-takescreentshot {
 	position: absolute;
-} */
+	left: 0;
+	z-index: 11;
+	color: #fff;
+	font-size: 20px;
+}
 
 @keyframes hideGift {
 	0% {

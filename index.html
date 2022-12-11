@@ -328,9 +328,9 @@
 					</a-plane>
 					<a-entity
 						light="
-            type: directional;
-            intensity: 1.0;
-            castShadow: true;
+            type: ambient;
+            intensity: 2.0;
+            castShadow: false;
             shadowMapHeight:2048;
             shadowMapWidth:2048;
             shadowCameraTop: 20;
@@ -342,9 +342,9 @@
 						shadow
 					>
 					</a-entity>
-					<a-light type="ambient" intensity="1.0"></a-light>
+					<a-light type="ambient" intensity="2.0"></a-light>
 					<a-entity
-						depth="1"
+						depth="2"
 						height="1"
 						width="1"
 						open-gift="gift: true"
@@ -395,7 +395,7 @@
 						gltf-model="#zoya"
 					></a-entity>
 					<a-entity
-						depth="1"
+						depth="2"
 						height="1"
 						width="1"
 						scale="1 1 1"
