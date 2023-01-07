@@ -3,6 +3,7 @@ import Modal from './libs/modal.js'
 import {delay, takeSnapshot} from './libs/method.js'
 
 // VARIABLE GLOBAL
+const fireworkContainer = document.querySelector('.fireworks-container')
 const btnAR = document.querySelector('.btnar')
 const welcomeModel = document.getElementById('welcome-modal')
 const successModel = new Modal(document.getElementById('success-modal'))
@@ -25,6 +26,15 @@ const soundSuccess = document.querySelector('#soundSuccess')
 const audioFailure = document.querySelector('#soundFailure')
 
 const url = window.location.href
+
+const fireworks = new Fireworks(fireworkContainer, {
+	speed: 4,
+	acceleration: 1.05,
+	friction: 1,
+	gravity: 4,
+	particles: 400,
+	explosion: 10,
+})
 
 AFRAME.registerComponent('modify-materials', {
 	init: function () {
@@ -62,6 +72,8 @@ AFRAME.registerComponent('open-gift', {
 			await delay(1000)
 			if (gift) {
 				soundSuccess.components.sound.playSound()
+				fireworkContainer.classList.add('fireworks-container-css')
+				fireworks.start()
 				await successModel.open()
 			} else {
 				audioFailure.components.sound.playSound()
@@ -102,6 +114,7 @@ async function load() {
 		btnScreenShort.addEventListener('click', () => {
 			captureImageEl.classList.remove('hidden')
 			successModel.close()
+			fireworks.stop()
 		})
 
 		captureImageEl.addEventListener('click', function (e) {
@@ -130,6 +143,7 @@ async function load() {
 		})
 
 		btnShareFacebook.addEventListener('click', function () {
+			fireworks.stop()
 			window.open(
 				'https://www.facebook.com/sharer/sharer.php?u=' + url,
 				'facebook-share-dialog',
